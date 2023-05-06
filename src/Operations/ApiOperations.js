@@ -1,47 +1,89 @@
 import Config from "../Config";
 
-export default {
+    //reg expression for validating guids
+    const regexExp = /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/gi;
+
     //Calls the API to get a users id from email
-    async GetUserId(email) {
-        const response = await fetch(Config.getApiUrl() + "User/" + email);
-        const myJson = await response.json(); 
-        return myJson
-    },
+    async function GetUserId(email) {
+        var response;
+            try{
+                response = await fetch(Config.getApiUrl() + "User/" + email);
+                if(response.status === 500){
+                    return "Not Found";
+                }
+                let body = await response.json();
+                return body[0].id;
+            }catch{
+                return "Error";
+            }
+    };
 
     //Calls the API to create a user
-    async CreateUser(email) {
-        const response = await fetch(Config.getApiUrl() + "User/" + email, {
-            method: 'POST',
-            body: "", 
-            headers: {
-            'accept' : 'text/plain'
+    async function CreateUser(email) {
+        var response;
+        try{
+            response = await fetch(Config.getApiUrl() + "User/" + email, {
+                method: 'POST',
+                headers: {
+                'accept' : 'text/plain'
+                }
+            });
+            if(response.status === 409){
+                return "User Exists";
             }
-        });
-        const myJson = await response.json(); 
-        return myJson
-    },
+            return "User Created";
+        }catch{
+            return "Error";
+        }
+    }
 
     //Calls the Api to create a Vehcile
-    async GetVehcile(userId) {
-        const response = await fetch(Config.getApiUrl() + "Vehcile/" + userId);
-        const myJson = await response.json(); 
-        return myJson
-    },
+    async function GetVehcilesByUser(userId) {
+        if(regexExp.test(userId) === false){
+            return "Id Not Valid";
+        }
+        var response;
+        try{
+            response = await fetch(Config.getApiUrl() + "Vehcile/" + userId);
+            if(response.status === 404){
+                return "Not Found";
+            }
+            let body = await response.json();
+            let data = [];
+            body.forEach(vehcile => {
+                data.push(vehcile.id);
+            });
+            return data;
+        }catch{
+            return "Error";
+        }
+    }
 
     //Calls the Api to delete a Vehcile
-    async DeleteVehcile(maintenanceId) {
-        const response = await fetch(Config.getApiUrl() + "Vehcile/" + maintenanceId, {
-            method: 'DELETE',
-            headers: {
-            'accept' : '*/*'
+    async function DeleteVehcile(maintenanceId) {
+        if(regexExp.test(maintenanceId) === false){
+            return "Id Not Valid";
+        }
+        var response;
+        try{
+            response = await fetch(Config.getApiUrl() + "Vehcile/" + maintenanceId, {
+                method: 'DELETE',
+                headers: {
+                'accept' : '*/*'
+                }
+            });
+            if(response.status === 400){
+                return "Not Found";
             }
-        });
-        const myJson = await response.json(); 
-        return myJson
-    },
+            return "Deleted";
+
+        }catch{
+            return "Error";
+        }
+    }
 
     //Calls the Api to Create a Vehcile
-    async CreateVehcile(newVehcile) {
+    async function CreateVehcile(newVehcileObject) {
         //EXAMPLE OBJECT
         // {
         //     "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
@@ -51,43 +93,74 @@ export default {
         //     "isHours": true,
         //     "kilometersOrHours": 0,
         //     "vehcileType": 0
-        // }
-
-        const response = await fetch(Config.getApiUrl() + "Vehcile", {
-            method: 'POST',
-            body: newVehcile, 
-            headers: {
-            'accept' : 'text/plain',
-            'Content-Type' : 'application/json',
-
+        // }newVehcileObject.userID
+        if(regexExp.test(newVehcileObject.userID) === false){
+            return "Id Not Valid";
+        }
+        var response;
+        try{
+            response = await fetch(Config.getApiUrl() + "Vehcile", {
+                method: 'POST',
+                body: JSON.stringify(newVehcileObject), 
+                headers: {
+                'accept' : 'application/json',
+                'Content-Type' : 'application/json',
+                }
+            });
+            if(response.status === 400){
+                console.log(response);
+                return "Err";
             }
-        });
-        const myJson = await response.json(); 
-        return myJson
-    },
+            return "Created Vehcile"
+        }catch{
+            return "Error";
+        }
+    };
 
 
     //Calls the Api to create a Maintenance Item
-    async GetMaintenanceItem(vehcileId) {
-        const response = await fetch(Config.getApiUrl() + "Maintenance/" + vehcileId);
-        const myJson = await response.json(); 
-        return myJson
-    },
+    async function GetMaintenanceItem(vehcileId) {
+        if(regexExp.test(vehcileId) === false){
+            return "Id Not Valid";
+        }
+        var response;
+        try{
+            response = await fetch(Config.getApiUrl() + "Maintenance/" + vehcileId);
+            const myJson = await response.json(); 
+            if(response.status === 404){
+                return "Not Found";
+            }
+            console.log(myJson);
+            return "Logged in Console";
+        }catch{
+            return "Error";
+        }
+    }
 
     //Calls the Api to delete a Maintenance item
-    async DeleteMaintenanceItem(vehcileId) {
-        const response = await fetch(Config.getApiUrl() + "Maintenance/" + vehcileId, {
-            method: 'DELETE',
-            headers: {
-            'accept' : '*/*'
+    async function DeleteMaintenanceItem(vehcileId) {
+        if(regexExp.test(vehcileId) === false){
+            return "Id Not Valid";
+        }
+        var response;
+        try{
+            response = await fetch(Config.getApiUrl() + "Maintenance/" + vehcileId, {
+                method: 'DELETE',
+                headers: {
+                'accept' : '*/*'
+                }
+            });
+            if(response.status === 404 || response.status === 400){
+                return "Not Found";
             }
-        });
-        const myJson = await response.json(); 
-        return myJson
-    },
+            return "Deleted";
+        }catch{
+            return "Error";
+        }
+    }
 
     //Calls the Api to Create a Maintenance Item
-    async CreateMaintenanceItem(newMaintenanceItem) {
+    async function CreateMaintenanceItem(newMaintenanceItem) {
         //EXAMPLE OBJECT
         // {
         //   "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
@@ -99,17 +172,28 @@ export default {
         //   "notes": "string",
         //   "maintType": 0
         // }
-
-        const response = await fetch(Config.getApiUrl() + "Maintenance", {
-            method: 'POST',
-            body: newMaintenanceItem, 
-            headers: {
-            'accept' : 'text/plain',
-            'Content-Type' : 'application/json',
-
+        if(regexExp.test(newMaintenanceItem.vehcileId) === false){
+            return "Id Not Valid";
+        }
+        var response;
+        try{
+            response = await fetch(Config.getApiUrl() + "Maintenance", {
+                method: 'POST',
+                body: JSON.stringify(newMaintenanceItem), 
+                headers: {
+                'accept' : 'application/json',
+                'Content-Type' : 'application/json',
+                }
+            });
+            if(response.status === 400){
+                console.log(response);
+                return "Err";
             }
-        });
-        const myJson = await response.json(); 
-        return myJson
-    },
-};
+            return "Created Maintenance Item";
+        }catch{
+            return "Error";
+        }
+            
+    }
+
+export {GetUserId, CreateUser, GetVehcilesByUser, DeleteVehcile, CreateVehcile, GetMaintenanceItem, DeleteMaintenanceItem, CreateMaintenanceItem};

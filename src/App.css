@@ -1,0 +1,58 @@
+.NavBarLinks {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    
+}
+.NavBarLinks > div {
+    margin-left: 25px;
+}
+.UserBox p {
+    margin: 0;
+}
+.UserBox a {
+    margin: 0;
+}
+ 
+.loginPage {
+    padding-top: 180px;
+    display: flex;
+    flex-direction: row;
+}
+.displayRegisterBox {
+    display: flex;
+    flex-direction: row;
+}
+.hidden {
+    display: none;
+}
+.loginBox {
+    display: block;
+    text-align: center;
+    align-items: center;
+    width: 300px;
+    margin-left: auto;
+    margin-right: 50px;
+}
+.loginBoxAfterRegistration {
+    display: block;
+    text-align: center;
+    align-items: center;
+    width: 300px;
+    margin: auto;
+}
+.registerBox {
+    display: block;
+    text-align: center;
+    align-items: center;
+    width: 300px;
+    margin-right: auto;
+    margin-left: 50px;
+}
+
+.borderDiv {
+    border: 1px solid black;
+    height: 100%;
+    width: 1px;
+}
