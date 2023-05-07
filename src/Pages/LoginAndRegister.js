@@ -2,7 +2,6 @@ import NavBar from '../Components/NavBar';
 import '../App.css';
 import React from 'react';
 import Cookies from 'universal-cookie';
-import Config from "../Config";
 
 
 export default function Login(){
@@ -18,8 +17,8 @@ export default function Login(){
 
     async function LoginSubmit(event){
         event.preventDefault();
-        let userName = event.target.userName.value;
-        let password = event.target.password.value;
+        let userName = event.target.userNameLogin.value;
+        let password = event.target.passwordLogin.value;
         let userObj = {
             "username": userName,
             "password": password
@@ -42,7 +41,6 @@ export default function Login(){
                 let token = await response.json();
                 console.log("token set");
                 cookies.set('JWT_Token', token, { path: '/' });
-                cookies.set('User', userObj.username, { path: '/' });
                 window.location.reload();
             }
         }catch{
@@ -85,7 +83,7 @@ export default function Login(){
     }
 
     return (
-        <div>
+        <div className='Page'>
             <NavBar />
             <div className='loginPage'>
                 <div className={ displayRegister ? "loginBox" : "loginBoxAfterRegistration"}>
@@ -93,9 +91,9 @@ export default function Login(){
                     <h6 className={displayRegister ? "hidden" : "text-success"}>{registerMessage === "User Created Please Login" ? registerMessage : ""}</h6>
                     <form method="post" onSubmit={LoginSubmit}>
                         <label>Username: </label>
-                        <input type="text" name="userName" id="userName" />
+                        <input type="text" name="userNameLogin" id="userNameLogin" />
                         <label>Password: </label>
-                        <input type="password" name="password" id="password" />
+                        <input type="password" name="passwordLogin" id="passwordLogin" />
                         <button type='submit' >Submit</button>
                     </form>
                 </div>

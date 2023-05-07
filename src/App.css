@@ -56,3 +56,41 @@
     height: 100%;
     width: 1px;
 }
+.testVehcile {
+    border: 1px solid black; 
+    margin: 5px;
+}
+.MyVehciles {
+    display: flex;
+    flex-direction: column;
+}
+.CreateVehcileForm {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    align-items: center;
+    text-align: center;
+    margin: auto;
+}
+h1 {
+    text-align: center;
+}
+.MaintenanceItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 50px 200px;
+    border: 1px solid black; 
+}
+.CreateMaintForm {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    align-items: center;
+    text-align: center;
+    margin: auto;
+}
+.Page {
+    
+}

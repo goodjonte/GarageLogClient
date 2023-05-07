@@ -1,5 +1,6 @@
 import '../App.css';
 import React from 'react';
+import jwt_decode from "jwt-decode";
 
 import Cookies from 'universal-cookie';
 
@@ -9,12 +10,18 @@ export default function NavBar(){
     var loggedInBool;
     loggedIn != null ? loggedInBool = true : loggedInBool = false;
     var userName;
-    loggedInBool ? userName = cookies.get('User') : userName = "";
+    loggedInBool ? userName = GetUsername() : userName = "";
+    
 
     function LogOut(){
         cookies.remove('JWT_Token');
-        cookies.remove('User');
         window.location.href = "/";
+    }
+
+    function GetUsername() {
+        var token = cookies.get('JWT_Token');
+        var decoded = jwt_decode(token);
+        return decoded['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
     }
 
     return (
@@ -22,7 +29,7 @@ export default function NavBar(){
             
             <nav className="navbar bg-body-tertiary">
                 <div className="container-fluid">
-                    <a className="navbar-brand" href="#">
+                    <a className="navbar-brand" href="/">
                     GarageLog
                     </a>
                     {
@@ -32,11 +39,11 @@ export default function NavBar(){
                                 <a className="nav-link active" aria-current="page" href="/MyVehciles">My Vehciles</a>
                             </div>
                             <div className="nav-item">
-                                <a className="nav-link active" aria-current="page" href="#">My Account</a>
+                                <a className="nav-link active" aria-current="page" href="/MyAccount">My Account</a>
                             </div>
                             <div className="UserBox">
-                                <p className=" nav-link">Logged in as: {userName}</p>
-                                <a className="nav-link float-end" onClick={LogOut}>Logout</a>
+                                <p className=" nav-link">Logged in as: <strong>{userName}</strong></p>
+                                <a className="nav-link float-end" href="/" onClick={LogOut}>Logout</a>
                             </div>
                     </div>
                     :
