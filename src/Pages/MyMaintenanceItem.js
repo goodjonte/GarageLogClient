@@ -7,7 +7,6 @@ export default function MyMaintenance() {
     const [myMaintenanceItems, setMyMaintenanceItems] = React.useState(null);
     const [vehcile, setVehcile] = React.useState(null);
     const [loading, setLoading] = React.useState(true);
-    const [useKilometers, setUseKilometers] = React.useState(true);
 
     const urlParams = new URLSearchParams(window.location.search);
     const vehcileId = urlParams.get('vehcileId');
