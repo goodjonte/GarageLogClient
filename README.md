@@ -13,3 +13,6 @@ React-Router-Dom package for routing
 Use of React Hooks
 Use of custom React Components
 
+##Notes:
+
+Security is not prioriteized in this project for purposes of testing and developing, so the use of JWT tokens isnt the best (for example expiration of the tokens is not set up).
