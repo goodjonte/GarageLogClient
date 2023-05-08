@@ -84,17 +84,24 @@ export default function Login(){
 
     return (
         <div className='Page'>
-            <NavBar />
+            <NavBar onLoginPage={true} />
             <div className='loginPage'>
                 <div className={ displayRegister ? "loginBox" : "loginBoxAfterRegistration"}>
-                    <h2>Login</h2>
+                    <h2 className='text-color'>Login</h2>
                     <h6 className={displayRegister ? "hidden" : "text-success"}>{registerMessage === "User Created Please Login" ? registerMessage : ""}</h6>
-                    <form method="post" onSubmit={LoginSubmit}>
-                        <label>Username: </label>
-                        <input type="text" name="userNameLogin" id="userNameLogin" />
-                        <label>Password: </label>
-                        <input type="password" name="passwordLogin" id="passwordLogin" />
-                        <button type='submit' >Submit</button>
+                    <form className='LoginForm' method="post" onSubmit={LoginSubmit}>
+                        
+                        <div className="input-group inputLoginPage">
+                            <span className='input-group-text'>Username: </span>
+                            <input className='form-control' type="text" name="userNameLogin" id="userNameLogin" />
+                        </div>
+
+                        <div className="input-group inputLoginPage">
+                            <span className='input-group-text'>Password: </span>
+                            <input className='form-control' type="password" name="passwordLogin" id="passwordLogin" />
+                        </div>
+                        
+                        <button type='submit' className='btn btn-outline-dark'>Submit</button>
                     </form>
                 </div>
 
@@ -103,14 +110,22 @@ export default function Login(){
                 </div>
 
                 <div className={ displayRegister ? "registerBox" : "hidden"}>
-                    <h2>Register</h2>
-                    <form method="post" onSubmit={RegisterSubmit}>
-                        <label>Username:   </label>
-                        <input type="text" name="userName" id="userName" />
-                        <label>Password:    </label>
-                        <input type="password" name="password" id="password" />
-                        <button type='submit' >Submit</button>
-                        <h6 className='text-danger'>{registerMessage}</h6>
+                    <h2 className='text-color'>Register</h2>
+                    <form className='LoginForm' method="post" onSubmit={RegisterSubmit}>
+
+                        <div className="input-group inputLoginPage">
+                            <span className='input-group-text'>Username:   </span>
+                            <input className='form-control' type="text" name="userName" id="userName" />
+                        </div>
+
+                        <div className="input-group inputLoginPage">
+                            <span className='input-group-text'>Password:    </span>
+                            <input className='form-control' type="password" name="password" id="password" />
+                        </div>
+
+                        <button type='submit' className='btn btn-outline-dark' >Submit</button>
+
+                        <h6 className='text-danger' >{registerMessage}</h6>
                     </form>
                 </div>
                 

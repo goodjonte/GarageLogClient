@@ -4,7 +4,7 @@ import jwt_decode from "jwt-decode";
 
 import Cookies from 'universal-cookie';
 
-export default function NavBar(){
+export default function NavBar(props){
     const cookies = new Cookies();
     var loggedIn = cookies.get('JWT_Token');
     var loggedInBool;
@@ -12,6 +12,8 @@ export default function NavBar(){
     var userName;
     loggedInBool ? userName = GetUsername() : userName = "";
     
+    var onLoginPage;
+    props.onLoginPage ? onLoginPage = true : onLoginPage = false;
 
     function LogOut(){
         cookies.remove('JWT_Token');
@@ -25,30 +27,30 @@ export default function NavBar(){
     }
 
     return (
-        <div>
+        <div >
             
-            <nav className="navbar bg-body-tertiary">
+            <nav className="navbar bg-body-tertiary NavBarCustomization ">
                 <div className="container-fluid">
-                    <a className="navbar-brand" href="/">
+                    <a className="navbar-brand text-colorNav" href="/">
                     GarageLog
                     </a>
                     {
                     loggedInBool ? 
                     <div className="NavBarLinks">
                             <div className="nav-item">
-                                <a className="nav-link active" aria-current="page" href="/MyVehciles">My Vehciles</a>
+                                <a className="nav-link active text-colorNav" aria-current="page" href="/MyVehciles">My Vehciles</a>
                             </div>
                             <div className="nav-item">
-                                <a className="nav-link active" aria-current="page" href="/MyAccount">My Account</a>
+                                <a className="nav-link active text-colorNav" aria-current="page" href="/MyAccount">My Account</a>
                             </div>
                             <div className="UserBox">
-                                <p className=" nav-link">Logged in as: <strong>{userName}</strong></p>
-                                <a className="nav-link float-end" href="/" onClick={LogOut}>Logout</a>
+                                <p className=" nav-link text-colorNav">Logged in as: <strong>{userName}</strong></p>
+                                <a className="nav-link float-end text-colorNav" href="/" onClick={LogOut}>Logout</a>
                             </div>
                     </div>
                     :
-                    <div className="">
-                        <h5 className="nav-link active">Login/Register</h5>
+                    <div className={onLoginPage ? "hidden" : ""}>
+                        <h5 className="nav-link active text-colorNav">Login/Register</h5>
                     </div> 
                     }
                 </div>

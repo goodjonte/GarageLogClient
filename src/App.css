@@ -5,8 +5,18 @@
     align-items: center;
     
 }
+.NavBarCustomization {
+    background-color: #000000 !important;
+}
+.text-colorNav {
+    color: #F6F1F1!important;
+}
+.text-color{
+    color: #000000!important;
+}
 .NavBarLinks > div {
     margin-left: 25px;
+    font-weight: 400;
 }
 .UserBox p {
     margin: 0;
@@ -14,11 +24,32 @@
 .UserBox a {
     margin: 0;
 }
- 
+.newVehcileButtonA {
+    text-decoration: none;
+    color: #F6F1F1;
+}
+.newVehcileButtonA:hover {
+    color: #19A7CE;
+}
+.newVehcileButton {
+    margin: 25px;
+}
 .loginPage {
     padding-top: 180px;
     display: flex;
     flex-direction: row;
+    width:  60%;
+    margin: 200px 20%;
+    padding: 50px 0;
+}
+.viewMaintButton {
+    margin: 20px;
+    color: #F6F1F1;
+    text-decoration: none;
+    text-align: center;
+}
+.btn:hover a{
+    color: #F6F1F1 !important;
 }
 .displayRegisterBox {
     display: flex;
@@ -56,13 +87,14 @@
     height: 100%;
     width: 1px;
 }
-.testVehcile {
-    border: 1px solid black; 
-    margin: 5px;
-}
-.MyVehciles {
-    display: flex;
-    flex-direction: column;
+.Vehcile {
+    border: 1px solid #072431; 
+    margin: 25px;
+    width: 330px;
+    height: 320px;
+    border-radius: 10px;
+    background-color: #146C94;
+    box-shadow: 5px 10px #158cad;
 }
 .CreateVehcileForm {
     display: flex;
@@ -80,8 +112,12 @@ h1 {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    margin: 50px 200px;
-    border: 1px solid black; 
+    margin: 50px;
+    border: 1px solid black;
+    width: 280px;
+    border-radius: 10px;
+    background-color: #146C94;
+    box-shadow: 5px 10px #158cad;
 }
 .CreateMaintForm {
     display: flex;
@@ -91,6 +127,94 @@ h1 {
     text-align: center;
     margin: auto;
 }
+.inputLoginPage {
+    width: 300px;
+    margin: 10px;
+    border: black 1px solid;
+    border-radius: 7px;
+}
+.inputLoginPage span {
+    font-weight: bolder;
+    border-right: black 2px solid !important;
+}
 .Page {
-    
+    height: 100%;
+}
+.LoginForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.LoginForm input {
+    width: 60%;
+}
+.margin-top-45 {
+    margin-top: 300px;
+}
+.LoginForm button {
+    margin-top: 10px;
+}
+.input1 {
+    width: 400px;
+    margin: 7px;
+    border: black 1px solid;
+    border-radius: 7px;
+}
+.MaintVehcileBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.input1 span {
+    font-weight: bolder;
+    border-right: black 2px solid !important;
+}
+.MaintVehcileIcon {
+    display: flex;
+    flex-direction: column;
+    width: 50px;
+    height: 50px;
+    align-items: center !important;
+    text-align: center !important;
+    font-size: 120px !important;
+    margin: 25px;
+}
+.MaintIcon{
+    height: 50px;
+    width: 50px;
+    margin: 15px;
+}
+.vehcileIcon {
+    display: flex;
+    flex-direction: column;
+    width: 120px;
+    height: 120px;
+    align-items: center !important;
+    text-align: center;
+    font-size: 120px !important;
+}
+.vehcileIcon {
+    margin: 25px auto !important;
+}
+.vehcileLink {
+    align-items: center !important;
+    text-align: center !important;
+    color: #F6F1F1;
+}
+.title {
+    margin-top: 25px;
+}
+.flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.font-decoration-none {
+    text-decoration: none;
+    color: #F6F1F1;
+}
+#NoItemsTitle {
+    margin-top: 100px;
 }
