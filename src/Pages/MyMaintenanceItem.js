@@ -15,7 +15,7 @@ export default function MyMaintenance() {
         const urlParams = new URLSearchParams(window.location.search);
         setVehcileId(urlParams.get('vehcileId'));
 
-        fetch(Config.getApiUrl() + 'Maintenance/' + vehcileId, {
+        fetch(Config.getApiUrl() + 'Maintenance/' + urlParams.get('vehcileId'), {
             method: 'GET',
             headers: {
                 'accept': 'text/plain',
@@ -30,7 +30,7 @@ export default function MyMaintenance() {
 
 
 
-        fetch(Config.getApiUrl() + 'Vehcile/' + vehcileId, {
+        fetch(Config.getApiUrl() + 'Vehcile/' + urlParams.get('vehcileId'), {
             method: 'GET',
             headers: {
                 'accept': '*/*',
