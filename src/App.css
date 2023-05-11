@@ -88,6 +88,8 @@
     width: 1px;
 }
 .Vehcile {
+    display: flex;
+    flex-direction: column;
     border: 1px solid #072431; 
     margin: 25px;
     width: 330px;
@@ -115,6 +117,7 @@ h1 {
     margin: 50px;
     border: 1px solid black;
     width: 280px;
+    min-height: 350px;
     border-radius: 10px;
     background-color: #146C94;
     box-shadow: 5px 10px #158cad;
@@ -217,4 +220,29 @@ h1 {
 }
 #NoItemsTitle {
     margin-top: 100px;
+}
+.deleteButton {
+    width: 25px;
+    margin: 5px;
+    background-color: transparent transparent !important;
+    position: absolute !important;
+    margin-left: 280px;
+}
+.deleteButtonMaint {
+    width: 25px;
+    margin: 5px;
+    background-color: transparent transparent !important;
+    position: absolute !important;
+    margin-left: 245px;
+}
+.deleteButtonMaint:hover svg path {
+    stroke: red;
+}
+.deleteButton:hover svg path {
+    stroke: red;
+}
+.editButton {
+    color: black;
+    margin: 0px 5px;
+    text-decoration: underline;
 }

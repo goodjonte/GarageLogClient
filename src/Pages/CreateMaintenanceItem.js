@@ -9,6 +9,7 @@ export default function CreateMaintenanceItem() {
     const [customBool, setCustomBool] = React.useState(false)
     const [dateBool, setDateBool] = React.useState(false)
 
+    //Functions to switch bool values
     function CustomBoolSwitch() {
         setCustomBool(!customBool);
     }
@@ -16,6 +17,7 @@ export default function CreateMaintenanceItem() {
         setDateBool(!dateBool);
     }
 
+    //Form Submit Function
     function CreateMaintItem(event) {
         event.preventDefault();
         console.log(event.target);
@@ -41,8 +43,6 @@ export default function CreateMaintenanceItem() {
             "notes": event.target.notes.value,
             "maintType": parseInt(event.target.maintType.value)
         }
-
-        console.log(maintObj);
 
         fetch('https://localhost:7018/api/Maintenance', {
             method: 'POST',

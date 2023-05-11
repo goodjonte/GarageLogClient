@@ -1,12 +1,13 @@
 import React from 'react';
 import NavBar from '../Components/NavBar';
+import Loading from '../Components/Loading';
 import * as Operations from '../Operations/Operations';
 
 export default function MyMaintenance() {
 
     const [myMaintenanceItems, setMyMaintenanceItems] = React.useState(null);
     const [vehcile, setVehcile] = React.useState(null);
-    const [loading, setLoading] = React.useState(true);
+    const [loadingBool, setLoadingBool] = React.useState(true);
 
     const urlParams = new URLSearchParams(window.location.search);
     const vehcileId = urlParams.get('vehcileId');
@@ -42,7 +43,7 @@ export default function MyMaintenance() {
         }).then(response => {
             response.json().then(data => {
                 setVehcile(data);
-                setLoading(false);
+                setLoadingBool(false);
             });
         });
     }
@@ -50,14 +51,10 @@ export default function MyMaintenance() {
     return (
         <div>
             <NavBar />
-             
-            <div class={loading ? "d-flex justify-content-center margin-top-45" : "hidden" }>
-                <div class="spinner-border" role="status">
-                    <span class="visually-hidden">Loading...</span>
-                </div>
-            </div>
 
-            <div className={loading ? 'hidden' : 'vehcileMaint container' }>
+            <Loading loadingBool={loadingBool} />
+
+            <div className={loadingBool ? 'hidden' : 'vehcileMaint container' }>
                 {vehcile != null ?
 
                     <div className='MaintVehcileBox'>
@@ -66,7 +63,9 @@ export default function MyMaintenance() {
                         </div>
                         <div>
                             <h3 className='title'> My {vehcile.name} </h3>
-                            <p>{vehcile.kilometersOrHours ? Operations.NumberToReadableString(vehcile.kilometersOrHours) : ""}{vehcile.kilometersOrHours ? vehcile.isHours ? "Hours" : "km" : ""}</p>
+                            <p>{vehcile.kilometersOrHours ? Operations.NumberToReadableString(vehcile.kilometersOrHours) : ""}{vehcile.kilometersOrHours ? vehcile.isHours ? "Hours" : "km" : ""}
+                            <span className='editButton' onClick={() => Operations.UpdateMilegae(vehcile.id)}>Update</span>
+                            </p>
                         </div>
                     </div>
                 : ""}
@@ -79,7 +78,10 @@ export default function MyMaintenance() {
                 <div className='row justify-content-center'>
                     {
                         myMaintenanceItems != null ? myMaintenanceItems.map((maintenanceItem) => (
-                            <div className='MaintenanceItem col-md-6' key={maintenanceItem.id}>
+                            <div className='MaintenanceItem col-sm-6' key={maintenanceItem.id}>
+                                <div onClick={() => Operations.DeleteLog(maintenanceItem.id)} className="deleteButtonMaint">
+                                    {Operations.TrashIcon()}
+                                </div>
                                 <div className='MaintIcon'>{Operations.GetMaintenanceIcon(maintenanceItem.maintType)}</div>
                                 <h1>{maintenanceItem.name}</h1>
                                 <h5>{maintenanceItem.dateBool ? "Done At: " + Operations.ReadAbleDate(maintenanceItem.doneAtDate) : maintenanceItem.doneAtKilometers != null ? "Done At: " + Operations.NumberToReadableString(maintenanceItem.doneAtKilometers) + "km" : ""}</h5>

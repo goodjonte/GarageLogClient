@@ -40,9 +40,6 @@ export default function NavBar(props){
                             <div className="nav-item">
                                 <a className="nav-link active text-colorNav" aria-current="page" href="/MyVehciles">My Vehciles</a>
                             </div>
-                            <div className="nav-item">
-                                <a className="nav-link active text-colorNav" aria-current="page" href="/MyAccount">My Account</a>
-                            </div>
                             <div className="UserBox">
                                 <p className=" nav-link text-colorNav">Logged in as: <strong>{userName}</strong></p>
                                 <a className="nav-link float-end text-colorNav" href="/" onClick={LogOut}>Logout</a>
