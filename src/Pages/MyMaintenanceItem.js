@@ -9,17 +9,13 @@ export default function MyMaintenance() {
     const [myMaintenanceItems, setMyMaintenanceItems] = React.useState(null);
     const [vehcile, setVehcile] = React.useState(null);
     const [loadingBool, setLoadingBool] = React.useState(true);
-
-    const urlParams = new URLSearchParams(window.location.search);
-    const vehcileId = urlParams.get('vehcileId');
+    const [vehcileId, setVehcileId] = React.useState(null);
 
     React.useEffect(() => {
-        GetMyMaintenanceItems();
-        GetAVehcile(vehcileId);
-    }, []);
+        const urlParams = new URLSearchParams(window.location.search);
+        setVehcileId(urlParams.get('vehcileId'));
 
-    async function GetMyMaintenanceItems() {
-        await fetch(Config.getApiUrl() + 'Maintenance/' + vehcileId, {
+        fetch(Config.getApiUrl() + 'Maintenance/' + vehcileId, {
             method: 'GET',
             headers: {
                 'accept': 'text/plain',
@@ -31,10 +27,10 @@ export default function MyMaintenance() {
                 }
             });
         });
-    }
 
-    async function GetAVehcile(Id) {
-        await fetch(Config.getApiUrl() + 'Vehcile/' + Id, {
+
+
+        fetch(Config.getApiUrl() + 'Vehcile/' + vehcileId, {
             method: 'GET',
             headers: {
                 'accept': '*/*',
@@ -45,7 +41,7 @@ export default function MyMaintenance() {
                 setLoadingBool(false);
             });
         });
-    }
+    }, []);
 
     return (
         <div>

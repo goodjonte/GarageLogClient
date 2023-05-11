@@ -12,15 +12,13 @@ export default function MyVehciles() {
     const [vehciles, setVehciles] = React.useState(null);//holds JSX vehcile objects
     const [loadingBool, setLoadingBool] = React.useState(true);
 
-    const cookies = new Cookies();
-    var JWT = cookies.get('JWT_Token');
+    
     
     React.useEffect(() => {
-        GetMyVehciles();
-    }, []);
+        const cookies = new Cookies();
+        var JWT = cookies.get('JWT_Token');
 
-    async function GetMyVehciles() {
-        await fetch(Config.getApiUrl() + 'Vehcile?JWT=' + JWT, {
+        fetch(Config.getApiUrl() + 'Vehcile?JWT=' + JWT, {
             method: 'GET',
             headers: {
                 'accept': 'application/json',
@@ -35,8 +33,7 @@ export default function MyVehciles() {
                 setLoadingBool(false);
             });
         });
-    }
-    
+    }, []);
     return (
         <div>
             <NavBar />
