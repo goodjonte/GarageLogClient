@@ -28,7 +28,10 @@ export default function MyVehciles() {
             }
         }).then(response => {
             response.json().then(data => {
+                console.log(data);
+                if(response.status < 400 ) {
                 setVehciles(Operations.MapMyVehciles(data))
+                }
                 setLoadingBool(false);
             });
         });
@@ -46,7 +49,7 @@ export default function MyVehciles() {
                     <button className="btn btn-outline-dark "><a className='newVehcileButtonA text-color' href="/CreateVehcile">Add a New Vehcile</a></button>
                 </div>
                 {
-                    vehciles != null ? vehciles : ""
+                    vehciles != null ? vehciles : <h1 className='title'>No Vehciles Found</h1>
                 }
             </div>
         </div>

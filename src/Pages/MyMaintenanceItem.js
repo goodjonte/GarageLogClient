@@ -13,7 +13,7 @@ export default function MyMaintenance() {
     const urlParams = new URLSearchParams(window.location.search);
     const vehcileId = urlParams.get('vehcileId');
 
-    React.useEffect(async () => {
+    React.useEffect(() => {
         GetMyMaintenanceItems();
         GetAVehcile(vehcileId);
     }, []);
