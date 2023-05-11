@@ -59,7 +59,7 @@ export default function Login(){
 
         var response;
         try{
-            response = await fetch(Config.getApiUrl() + 'User/register', {
+            response = await fetch(Config.getApiUrl() + 'User/register', {  
                 method: 'POST',
                 body: JSON.stringify(userObj),
                 headers: {
