@@ -1,13 +1,14 @@
 import React from 'react';
 import NavBar from '../Components/NavBar';
 import Cookies from 'universal-cookie';
+import Config from '../Config';
 
 export default function CreateVehcileForm() {
     
     const cookies = new Cookies();
     var JWT = cookies.get('JWT_Token');
 
-
+    //Form Submit Function
     function CreateVehcile(event) {
         event.preventDefault();
         var vehcileObj = {
@@ -18,7 +19,7 @@ export default function CreateVehcileForm() {
             "KilometersOrHours" : isNaN(parseInt(event.target.KilometersOrHours.value))  ? 0 : parseInt(event.target.KilometersOrHours.value),
             "vehcileType" : parseInt(event.target.vehcileType.value),
         }
-        fetch('https://localhost:7018/api/Vehcile', {
+        fetch(Config.getApiUrl() + 'Vehcile', {
             method: 'POST',
             headers: {
                 'accept': 'application/json',

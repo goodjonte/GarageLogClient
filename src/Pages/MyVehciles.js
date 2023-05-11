@@ -4,13 +4,12 @@ import Loading from '../Components/Loading';
 import Cookies from 'universal-cookie';
 import * as Operations from '../Operations/Operations';
 import '../App.css';
+import Config from '../Config';
 
 
 
 export default function MyVehciles() {
-
-    // State holds JSX vehcile objects
-    const [vehciles, setVehciles] = React.useState(null);
+    const [vehciles, setVehciles] = React.useState(null);//holds JSX vehcile objects
     const [loadingBool, setLoadingBool] = React.useState(true);
 
     const cookies = new Cookies();
@@ -21,7 +20,7 @@ export default function MyVehciles() {
     }, []);
 
     async function GetMyVehciles() {
-        await fetch('https://localhost:7018/api/Vehcile?JWT=' + JWT, {
+        await fetch(Config.getApiUrl() + 'Vehcile?JWT=' + JWT, {
             method: 'GET',
             headers: {
                 'accept': 'application/json',

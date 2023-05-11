@@ -2,6 +2,7 @@ import React from 'react';
 import NavBar from '../Components/NavBar';
 import Loading from '../Components/Loading';
 import * as Operations from '../Operations/Operations';
+import Config from '../Config'; 
 
 export default function MyMaintenance() {
 
@@ -18,7 +19,7 @@ export default function MyMaintenance() {
     }, []);
 
     async function GetMyMaintenanceItems() {
-        await fetch('https://localhost:7018/api/Maintenance/' + vehcileId, {
+        await fetch(Config.getApiUrl() + 'Maintenance/' + vehcileId, {
             method: 'GET',
             headers: {
                 'accept': 'text/plain',
@@ -28,14 +29,12 @@ export default function MyMaintenance() {
                 if(response.status === 200){
                     setMyMaintenanceItems(data);
                 }
-                console.log(data);
-            }
-            );
+            });
         });
     }
 
     async function GetAVehcile(Id) {
-        await fetch('https://localhost:7018/api/Vehcile/' + Id, {
+        await fetch(Config.getApiUrl() + 'Vehcile/' + Id, {
             method: 'GET',
             headers: {
                 'accept': '*/*',

@@ -2,19 +2,16 @@ import NavBar from '../Components/NavBar';
 import '../App.css';
 import React from 'react';
 import Cookies from 'universal-cookie';
+import Config from '../Config';
 
 
 export default function Login(){
 
     const [displayRegister, setDisplayRegister] = React.useState(true);
     const [registerMessage, setRegisterMessage] = React.useState("");
-
-    
-
     const cookies = new Cookies();
-    cookies.set('myCat', 'Pacman', { path: '/' });
     
-
+    //Login Submit Function
     async function LoginSubmit(event){
         event.preventDefault();
         let userName = event.target.userNameLogin.value;
@@ -26,7 +23,7 @@ export default function Login(){
 
         var response;
         try{
-            response = await fetch('https://localhost:7018/api/User/login', {
+            response = await fetch(Config.getApiUrl() + 'User/login', {
                 method: 'POST',
                 body: JSON.stringify(userObj),
                 headers: {
@@ -43,12 +40,14 @@ export default function Login(){
                 cookies.set('JWT_Token', token, { path: '/' });
                 window.location.reload();
             }
-        }catch{
+        }catch(err){
             setRegisterMessage("Error");
+            console.log(err);
         }
 
     }
 
+    //Register Submit Function
     async function RegisterSubmit(event){
         event.preventDefault();
         let userName = event.target.userName.value;
@@ -60,7 +59,7 @@ export default function Login(){
 
         var response;
         try{
-            response = await fetch('https://localhost:7018/api/User/register', {
+            response = await fetch(Config.getApiUrl() + 'User/register', {
                 method: 'POST',
                 body: JSON.stringify(userObj),
                 headers: {
@@ -75,8 +74,9 @@ export default function Login(){
                 setRegisterMessage("User Created Please Login");
                 console.log("User Created");
             }
-        }catch{
+        }catch(err){
             setRegisterMessage("Error");
+            console.log(err);
         }
 
         setDisplayRegister(false);

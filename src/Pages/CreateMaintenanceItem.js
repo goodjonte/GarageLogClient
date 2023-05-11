@@ -1,6 +1,7 @@
 import React from 'react';
 import '../App.css';
 import NavBar from '../Components/NavBar';
+import Config from '../Config';
 
 export default function CreateMaintenanceItem() {
 
@@ -44,7 +45,7 @@ export default function CreateMaintenanceItem() {
             "maintType": parseInt(event.target.maintType.value)
         }
 
-        fetch('https://localhost:7018/api/Maintenance', {
+        fetch(Config.getApiUrl() + 'Maintenance', {
             method: 'POST',
             headers: {
                 'accept': 'application/json',
