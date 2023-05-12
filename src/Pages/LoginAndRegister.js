@@ -63,8 +63,8 @@ export default function Login(){
                 method: 'POST',
                 body: JSON.stringify(userObj),
                 headers: {
-                'accept' : 'application/json',
                 'Content-Type' : 'application/json',
+                'Ocp-Apim-Subscription-Key' : '7ff4642154bb42ddb4af243b7dcee6a6'
                 }
             });
             if(response.status === 400){
