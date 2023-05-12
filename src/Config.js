@@ -1,5 +1,5 @@
 export default class Config {
     static getApiUrl() {
-        return "https://garagelogapi.azure-api.net/garagelogexample/api/";
+        return "https://garagelog-api.azure-api.net/api/";
     }
 }
