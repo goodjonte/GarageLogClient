@@ -32,7 +32,7 @@ export default function Login(){
                 }
             });
             if(response.status === 400){
-                setRegisterMessage("Incorrect Usernae or Password!");
+                setRegisterMessage("Incorrect Username or Password!");
                 return;
             }else{
                 let token = await response.json();
@@ -63,7 +63,6 @@ export default function Login(){
                 method: 'POST',
                 body: JSON.stringify(userObj),
                 headers: {
-                'accept' : 'application/json',
                 'Content-Type' : 'application/json',
                 }
             });
