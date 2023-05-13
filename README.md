@@ -23,8 +23,8 @@ Security is not prioriteized in this project for purposes of testing and develop
 Also to register a user u just eneter a username and password, in a real world application you would also have a email field and get users to verify their email address.
 
 ## Showcase:
-Video showcase:
+Video showcase:  
 [![Link to video](https://img.youtube.com/vi/GESD1qt2-FA/0.jpg)](https://www.youtube.com/watch?v=GESD1qt2-FA)
 
-Screenshot of swagger:
+Screenshot of swagger:  
 ![image of swagger](https://raw.githubusercontent.com/goodjonte/GarageLogClient/master/asd.PNG)
